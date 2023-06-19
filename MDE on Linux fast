@@ -1,0 +1,69 @@
+What is required per MS docs
+
+Preparation steps, ensuring all storage systems drivers, network drivers are up to date. Performance benchmarks should be obtained prior (7 days ideally, but 24 hours suffices).
+
+Ensuring either the distro or kernel is supported. As well as the file system (supported file systems are in the aforementioned link).
+
+Kernel Reqs: fanotify must be enabled. Third party Avs must be removed prior as it will cause conflicts/locks on fanotify resources.
+•	Audit framework (auditd) must be enabled. Custom rules for Auditd can cause issues too.
+
+External Dependancies 
+ 
+•	The mdatp RPM package requires "glibc >= 2.17", "audit", "policycoreutils", "semanage" "selinux-policy-targeted", "mde-netfilter" 
+•	For RHEL6 the mdatp RPM package requires "audit", "policycoreutils", "libselinux", "mde-netfilter" 
+•	For DEBIAN the mdatp package requires "libc6 >= 2.23", "uuid-runtime", "auditd", "mde-netfilter" 
+ 
+The mde-netfilter package also has the following package dependencies: 
+•	For DEBIAN the mde-netfilter package requires "libnetfilter-queue1", "libglib2.0-0" 
+•	For RPM the mde-netfilter package requires "libmnl", "libnfnetlink", "libnetfilter_queue", "glib2"
+
+
+MDE Resources
+
+Full config guide (getting started) 
+
+Advanced deployment guidance for Microsoft Defender for Endpoint on Linux | Microsoft Learn 
+
+ 
+
+Convert Windows JSON to Linux 
+
+unzip -p WindowsDefenderATPOnboardingPackage.zip | python -c 'import sys,json;data={"onboardingInfo":"\n".join(sys.stdin.readlines())};print(json.dumps(data));' > mdatp_onboard.json 
+
+ 
+
+Running MDE with SAP on Linux 
+
+ 
+
+Defender ATP & Linux: trusting Microsoft to protect your open-source workloads | by Maarten Goet | Wortell | Medium 
+
+ 
+
+The Kitchen sink for MDE on Linux 
+
+  
+
+https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/comprehensive-guidance-on-linux-deployment?view=o365-worldwide 
+
+ 
+
+Schedule scans with crontab 
+
+How to schedule scans with Microsoft Defender for Endpoint (Linux) | Microsoft Learn 
+
+
+Setup Exclusions 
+
+Configure and validate exclusions for Microsoft Defender for Endpoint on Linux | Microsoft Learn 
+
+Detailed Health Troubleshooting 
+
+mdatp health --details <feature>. For example: 
+
+Investigate agent health issues | Microsoft Learn 
+
+
+Tracking Endpoint Events (or not getting them) 
+
+Troubleshoot missing events or alerts issues for Microsoft Defender for Endpoint on Linux | Microsoft Learn 
